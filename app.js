@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
 });
 
 // Puerto de escucha
-const port = 3000;
+const port = 5000;
 server.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 });
