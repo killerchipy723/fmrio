@@ -18,10 +18,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));  // Asegúrate de tener este archivo en la raíz
 });
 
+// Variable para almacenar el contador de visitas
+let visitCount = 0;
+
 // Conexión de Socket.io
 io.on('connection', (socket) => {
     console.log('Un usuario se ha conectado');
     
+    // Incrementar el contador de visitas
+    visitCount++;
+
+    // Emitir el contador de visitas a todos los clientes conectados
+    io.emit('visitCount', visitCount);
+
     // Recibir mensaje del cliente
     socket.on('newMessage', (message) => {
         console.log('Mensaje recibido:', message);
@@ -33,6 +42,12 @@ io.on('connection', (socket) => {
     // Evento de desconexión
     socket.on('disconnect', () => {
         console.log('Un usuario se ha desconectado');
+        
+        // Decrementar el contador de visitas
+        visitCount--;
+
+        // Emitir el contador de visitas actualizado a todos los clientes
+        io.emit('visitCount', visitCount);
     });
 });
 
