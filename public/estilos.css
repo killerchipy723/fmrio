@@ -1,0 +1,294 @@
+ /* Estilos generales */
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Radio_Receiver_Icon.svg') center/cover no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    animation: slideInFromTop 1.5s ease-in-out;
+}
+
+header p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    margin-top: 20px;
+    animation: slideInFromBottom 1.5s ease-in-out;
+}
+
+header .btn-escuchar {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #f8c503;
+    border: none;
+    border-radius: 50px;
+    color: #222;
+    transition: background-color 0.3s ease;
+    animation: zoomIn 1.5s ease-in-out;
+}
+
+header .btn-escuchar:hover {
+    background-color: #e0a800;
+    cursor: pointer;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+    0% { transform: translateY(-50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInFromBottom {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Sección principal (Hero Section) */
+.hero {
+    position: relative;
+    background-image: url('https://concepto.de/wp-content/uploads/2018/09/ondas-sonoras-e1537192870683.jpg'); /* Aquí pones la URL de tu imagen */
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+    height: 500px;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.2em;
+}
+
+/* Efecto de ondas sonoras */
+.waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: url('/logo.jpg') repeat-x;
+    animation: wave-animation 2s linear infinite;
+}
+
+@keyframes wave-animation {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+/* Estilo para la imagen de radio */
+.hero img.radio-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px; /* Tamaño ajustable */
+    z-index: 2;
+}
+
+.btn-escuchar {
+    background-color: #ff5722;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.btn-escuchar:hover {
+    background-color: #e64a19;
+}
+
+/* Chat de oyentes */
+.chat {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.chat h3 {
+    margin-bottom: 20px;
+}
+
+.chat input, .chat textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.chat button {
+    background-color: #004aad;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat button:hover {
+    background-color: #003b8d;
+}
+
+.messages {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
+.message {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Asegura que el footer se pegue al final de la página */
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer a {
+    color: #ff5722;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries para dispositivos pequeños */
+
+@media (max-width: 768px) {
+    .hero {
+        height: 400px;
+        padding: 40px 20px;
+    }
+
+    .hero h2 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1.1em;
+    }
+
+    .hero img.radio-image {
+        width: 120px;
+    }
+
+    .btn-escuchar {
+        font-size: 1.1em;
+        padding: 12px 25px;
+    }
+
+    .chat {
+        max-width: 100%;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 480px) {
+    .hero {
+        height: 300px;
+        padding: 30px 10px;
+    }
+
+    .hero h2 {
+        font-size: 1.8em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .hero img.radio-image {
+        width: 100px;
+    }
+
+    .btn-escuchar {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+
+    .chat {
+        max-width: 100%;
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .chat input, .chat textarea {
+        padding: 8px;
+    }
+
+    .chat button {
+        padding: 8px 16px;
+    }
+
+    .footer {
+        padding: 10px;
+    }
+}

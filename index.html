@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FM RIO 104.9 - Página Oficial</title>
+    <link rel="stylesheet" href="/estilos.css">   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"> 
+</head>
+<body>
+<header>
+    <!-- Header -->
+    <h1>FM RIO 104.9</h1>
+    <p>¡La mejor música en tu radio!</p>
+    <button class="btn-escuchar" id="btn-play">
+        <i class="fas fa-play-circle"></i> Escuchar en Vivo
+    </button>
+</header>
+    <!-- Hero Section -->
+    <section class="hero">
+       
+        <h2>Escucha en vivo ahora mismo</h2>
+        <p>Disfruta de la mejor programación y conecta con nuestra estación.</p>
+    
+
+        <!-- Efecto de ondas sonoras -->
+        <div class="waves"></div>
+    </section>
+
+    <!-- Chat de oyentes -->
+    <section class="chat">
+        <h3>¡Interactúa con nosotros!</h3>
+        <p>Envíanos un mensaje o saludo y sé parte de nuestra programación.</p>
+        
+        <!-- Campos para el nombre y el mensaje -->
+        <input type="text" id="user-name" placeholder="Tu nombre" />
+        <textarea id="chat-message" placeholder="Escribe tu mensaje..."></textarea>
+        <br>
+        <button id="send-message">Enviar Mensaje</button>
+
+        <!-- Área donde se mostrarán los mensajes -->
+        <div class="messages" id="message-container"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 FM RIO 104.9 | Todos los derechos reservados.</p>
+        <p>Síguenos en nuestras redes sociales: <a href="https://www.facebook.com/fmriosocial" target="_blank">Facebook</a>, <a href="https://www.instagram.com/fmriosocial" target="_blank">Instagram</a></p>
+    </footer>
+    <script src="/socket.io/socket.io.js"></script>
+
+
+    <!-- Script para escuchar en vivo y chat -->
+    <script>
+        // Conectar con el servidor de Socket.io
+        const socket = io();
+    
+        // Script para escuchar en vivo
+        const btnPlay = document.getElementById("btn-play");
+    
+        btnPlay.addEventListener("click", () => {
+            const audio = new Audio("https://stream.zeno.fm/636sxn8bna0uv"); // Sustituye por la URL de tu streaming
+            audio.play();
+            btnPlay.textContent = "Ahora estás escuchando en vivo";
+            btnPlay.disabled = true;
+        });
+    
+        // Script para el chat de oyentes
+        const sendMessageButton = document.getElementById("send-message");
+        const chatMessageInput = document.getElementById("chat-message");
+        const userNameInput = document.getElementById("user-name");
+        const messageContainer = document.getElementById("message-container");
+    
+        // Enviar mensaje cuando el botón es clickeado
+        sendMessageButton.addEventListener("click", () => {
+            const userName = userNameInput.value.trim();
+            const message = chatMessageInput.value.trim();
+    
+            if (userName && message) {
+                const newMessage = {
+                    userName: userName,
+                    message: message
+                };
+    
+                // Emitir el nuevo mensaje al servidor
+                socket.emit('newMessage', newMessage);
+    
+                // Limpiar los campos de entrada
+                userNameInput.value = "";
+                chatMessageInput.value = "";
+            } else {
+                alert("Por favor, completa ambos campos: tu nombre y mensaje.");
+            }
+        });
+    
+        // Recibir mensajes del servidor
+        socket.on('newMessage', (newMessage) => {
+            const { userName, message } = newMessage;
+            const newMessageDiv = document.createElement("div");
+            newMessageDiv.classList.add("message");
+            newMessageDiv.innerHTML = `<strong>${userName}:</strong> ${message}`;
+            
+            // Mostrar el mensaje en el contenedor de mensajes
+            messageContainer.appendChild(newMessageDiv);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+</body>
+</html>
