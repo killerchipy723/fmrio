@@ -13,17 +13,21 @@
     <!-- Header -->
     <h1>FM RIO 104.9</h1>
     <p>¡La mejor música en tu radio!</p>
+    
+    <!-- Contador de visitas -->
+    <div id="visit-counter">
+        Visitas: <span id="visit-count">0</span>
+    </div>
+
     <button class="btn-escuchar" id="btn-play">
         <i class="fas fa-play-circle"></i> Escuchar en Vivo
     </button>
 </header>
     <!-- Hero Section -->
     <section class="hero">
-       
         <h2>Tu mejor compañía</h2>
         <p>Desde Río Piedras, para todo el mundo FM RIO - Siempre Junto a vos</p>
     
-
         <!-- Efecto de ondas sonoras -->
         <div class="waves"></div>
     </section>
@@ -48,8 +52,8 @@
         <p>© 2025 FM RIO 104.9 | Todos los derechos reservados.</p>
         <p>Síguenos en nuestras redes sociales: <a href="https://www.facebook.com/fmriosocial" target="_blank">Facebook</a>, <a href="https://www.instagram.com/fmriosocial" target="_blank">Instagram</a></p>
     </footer>
-    <script src="/socket.io/socket.io.js"></script>
 
+    <script src="/socket.io/socket.io.js"></script>
 
     <!-- Script para escuchar en vivo y chat -->
     <script>
@@ -104,6 +108,20 @@
             // Mostrar el mensaje en el contenedor de mensajes
             messageContainer.appendChild(newMessageDiv);
         });
+
+        // Contador de visitas
+        let visitCount = localStorage.getItem("visitCount");
+
+        if (!visitCount) {
+            visitCount = 0; // Si no hay visitas guardadas, iniciamos en 0
+        }
+
+        visitCount++;
+        localStorage.setItem("visitCount", visitCount);
+
+        // Mostrar el contador en la página
+        const visitCountElement = document.getElementById("visit-count");
+        visitCountElement.textContent = visitCount;
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
