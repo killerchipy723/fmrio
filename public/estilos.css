@@ -1,5 +1,16 @@
- /* Estilos generales */
- body {
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilos generales */
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -10,14 +21,18 @@
 }
 
 header {
-    background: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Radio_Receiver_Icon.svg') center/cover no-repeat;
+    /* Fondo con gradiente para darle color */
+    background: linear-gradient(135deg, rgba(0, 72, 173, 0.8), rgba(255, 87, 34, 0.8)), 
+                url('https://upload.wikimedia.org/wikipedia/commons/1/1f/Radio_Receiver_Icon.svg') center/cover no-repeat;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
     color: white;
     animation: fadeIn 1.5s ease-in-out;
+    padding: 0 20px;
 }
 
 header h1 {
@@ -25,6 +40,7 @@ header h1 {
     font-weight: bold;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     animation: slideInFromTop 1.5s ease-in-out;
+    margin: 0;
 }
 
 header p {
@@ -38,7 +54,7 @@ header p {
 header .btn-escuchar {
     margin-top: 30px;
     font-size: 1.2rem;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: #f8c503;
     border: none;
     border-radius: 50px;
@@ -73,10 +89,11 @@ header .btn-escuchar:hover {
     100% { transform: scale(1); opacity: 1; }
 }
 
+
 /* Sección principal (Hero Section) */
 .hero {
     position: relative;
-    background-image: url('https://concepto.de/wp-content/uploads/2018/09/ondas-sonoras-e1537192870683.jpg'); /* Aquí pones la URL de tu imagen */
+    background-image: url('https://concepto.de/wp-content/uploads/2018/09/ondas-sonoras-e1537192870683.jpg');
     background-size: cover;
     background-position: center;
     padding: 60px 20px;
@@ -120,10 +137,11 @@ header .btn-escuchar:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 150px; /* Tamaño ajustable */
+    width: 150px;
     z-index: 2;
 }
 
+/* Botón de escuchar */
 .btn-escuchar {
     background-color: #ff5722;
     color: white;
@@ -193,12 +211,13 @@ header .btn-escuchar:hover {
     border-bottom: 1px solid #ddd;
 }
 
+/* Footer */
 .footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 20px;
-    margin-top: auto; /* Asegura que el footer se pegue al final de la página */
+    margin-top: auto;
 }
 
 .footer p {
@@ -214,8 +233,7 @@ header .btn-escuchar:hover {
     text-decoration: underline;
 }
 
-/* Media Queries para dispositivos pequeños */
-
+/* Media Queries */
 @media (max-width: 768px) {
     .hero {
         height: 400px;
@@ -250,7 +268,6 @@ header .btn-escuchar:hover {
     }
 }
 
-/* Media Queries para dispositivos móviles */
 @media (max-width: 480px) {
     .hero {
         height: 300px;
